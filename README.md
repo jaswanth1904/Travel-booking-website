@@ -40,3 +40,20 @@ Tools Used
 Visual Studio Code (VS Code): The primary code editor used for writing and managing the project's codebase.
 XAMPP/WAMP: Local server environments used for running the PHP scripts and MySQL database locally during development.
 Git and GitHub: Version control system and repository hosting service used for managing the project's source code and collaboration.
+![Screenshot (165)](https://github.com/user-attachments/assets/dd6680a2-1165-4b22-8159-3ec161e0aaaf)
+The Sign-Up Page is a crucial component of the Travel Hub website, enabling users to create accounts and start using the services. The page is designed for both usability and security, ensuring users can register easily and safely. With the help of front-end technologies like HTML, CSS, and JavaScript, and back-end technologies like PHP and MySQL, the page provides a seamless experience for new users.
+![Screenshot (165)](https://github.com/user-attachments/assets/3d1cf75b-40ad-4218-95eb-5c58a98512ca)
+Travel Hub - Login Page Description
+This is the login page for the Travel Hub website, designed to provide users with easy access to their travel bookings. The page includes a clean layout with a modern background image showcasing travel destinations.
+
+Key Features:
+
+Username/Email Input: For entering the user's login details.
+Password Input: Secure password field with an option to show/hide the password.
+Login Button: To submit the credentials.
+Forgot Password Link: For password recovery.
+Sign Up Link: For new users to create an account.
+Responsive Design: Ensures the page is mobile-friendly and works on all devices.
+The page is built with HTML, CSS, and JavaScript, ensuring a user-friendly experience and a secure login process.
+
+
