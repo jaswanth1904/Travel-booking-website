@@ -124,6 +124,34 @@ Number of Guests: A dropdown or input field to specify the number of guests.
 Search Button: A prominent button to submit the search and view available hotels.
 Hotel Listings: After the search, users will see a list of hotels with details like price, location, and amenities.
 The hotel search section is designed to be responsive and will adjust to all screen sizes, ensuring a seamless experience on both mobile and desktop devices. The front-end is built using HTML, CSS, and JavaScript, while the back-end handles the hotel search functionality with PHP and MySQL (if applicable).
+Travel Hub - Overview
+Travel Hub is a user-friendly online platform designed to simplify travel planning. The website offers a seamless experience for users to search for hotels, book accommodations, and manage travel details. With a clean and responsive design, Travel Hub ensures that users can easily navigate through different sections like hotel search, bookings, and account management.
+
+Key features include:
+
+Hotel Search: Users can search for hotels based on destination, check-in/check-out dates, and the number of guests.
+User Account Management: Users can register, log in, and manage their bookings through a personalized dashboard.
+Responsive Design: The website is fully responsive, providing an optimized experience on mobile, tablet, and desktop devices.
+Methodologies
+The development of the Travel Hub website follows a modular approach, using a combination of front-end and back-end technologies:
+
+Front-End:
+
+HTML: Used for structuring the content of the pages.
+CSS: For styling and ensuring the website is visually appealing and responsive.
+JavaScript: Adds interactive elements, like date pickers and form validation, to improve user experience.
+Back-End:
+
+PHP: Handles server-side logic, including form submissions, user registration, and hotel search functionality.
+MySQL: Stores user data, hotel details, and booking information in a structured database.
+Responsive Design:
+
+Ensures the website looks great on all devices using Bootstrap for a mobile-first approach.
+Security Measures:
+
+Password encryption and secure login methods are implemented to protect user data.
+This approach ensures that Travel Hub is a secure, user-friendly, and scalable travel platform.
+
 
 
 
