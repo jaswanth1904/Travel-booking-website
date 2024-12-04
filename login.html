@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    /* background: linear-gradient(to right, #cdb2b2, #e70a28); */
+    background-image: linear-gradient(to right, #43cea2, #185a9d);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    right: 15%;
+    transform: translateY(-50%);
+}
+
+
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ddd;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: rgba(15, 87, 115, 0.2);
+    color: #fff;
+    outline: none;
+    transition: background 0.3s ease;
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+p {
+    margin-top: 15px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: black;
+}
+.image-container {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.image-container p {
+    color: #fff;
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+        
+    </style>
+</head>
+<body>
+    </div>   
+    <div class="image-container">
+        <img src="Compass_Mountain_logo_vintage_vector_illustration_template_icon_graphic_design-removebg-preview.png" alt="Description of image">
+        <p><i>"Journey Beyond Limits: All Your Travel Needs in One Hub."</i>.</p>
+    </div>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="#" method="post">
+            <div class="form-group" >
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required onblur="checkUsername()">
+                <small id="username-error" style="color: white; display: none;">Username cannot be empty</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required onblur="checkPassword()">
+                <small id="password-error" style="color: white; display: none;">Password cannot be empty</small>
+            </div>
+            <button type="submit" >Login</button>
+            <p>Don't have an account? <a href="sign.html">Sign up</a></p>
+        </form>
+    </div>
+    <script>
+        function checkUsername() {
+            var username = document.getElementById("username").value;
+            var error = document.getElementById("username-error");
+            if (username.trim() === "") {
+                error.style.display = "inline";
+            } else {
+                error.style.display = "none";
+            }
+        }
+        function checkPassword() {
+            var password = document.getElementById("username").value;
+            var error = document.getElementById("password-error");
+            if (password.trim() === "") {
+                error.style.display = "inline";
+            } else {
+                error.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html> 

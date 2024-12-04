@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Results - Travel Hub Style</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            background: url('https://img.freepik.com/premium-photo/classic-bus-road_756748-1050.jpg') no-repeat center center/cover;
+            background-attachment: fixed;
+            color: rgb(248, 236, 236);
+            backdrop-filter: blur(5px);
+        }
+        .travel-hub-text {
+    font-size: 30px;
+    font-weight: 700;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #fdfdfd;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.travel-hub-text:hover {
+    color: #ff1100;
+    transform: scale(1.1);
+}
+
+.header {
+    background-color: #ffffff; 
+    color: #333; /* Adjust text color for contrast */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        .filters {
+            flex: 1;
+            padding: 20px;
+            background-color: #e8e2e2;
+            border-right: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+        }
+
+        .filter-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .filter-group input[type="radio"],
+        .filter-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .filter-group input[type="range"] {
+            width: 100%;
+        }
+
+        .bus-list {
+            flex: 3;
+            padding: 20px;
+        }
+
+        .bus-item {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .bus-item:hover {
+            transform: scale(1.02);
+        }
+
+        .bus-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #000000;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .bus-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        .bus-time-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            color: #777;
+        }
+
+        .bus-fare {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        .bus-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .bus-amenities {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .amenity {
+            flex: 1 1 calc(33.333% - 10px);
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .amenity i {
+            margin-right: 5px;
+            color: #000000;
+        }
+
+        .bus-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bus-reviews {
+            display: flex;
+            align-items: center;
+        }
+
+        .rating {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #000000;
+            margin-right: 5px;
+        }
+
+        .reviews {
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        .view-seats-btn {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .view-seats-btn:hover {
+            background-color: #ff0000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .filters {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .bus-details,
+            .bus-amenities {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+.nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    margin: 0 1rem;
+    text-align: center;
+}
+
+.nav-item .icon {
+    height: 40px;
+    width: auto;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover .icon {
+    transform: scale(1.1);
+}
+
+.nav-item a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-item a:hover {
+    color: #ff0000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .travel-hub-logo-container img {
+        height: 60px;
+    }
+
+    .travel-hub-text {
+        font-size: 18px;
+        left: 80px;
+    }
+
+    .nav-item {
+        margin: 0 0.5rem;
+    }
+
+    .nav-item .icon {
+        height: 30px;
+    }
+
+    .nav-item a {
+        font-size: 14px;
+    }
+}
+
+        
+    </style>
+</head>
+<body>
+<span class="travel-hub-text" onclick="refreshPage()">
+                                Travel Hub
+                            </span>
+                    </div>
+                <div class="col-md-8">
+                    <nav class="d-flex justify-content-start">
+                        <ul class="nav">
+                            <li class="nav-item mx-2">
+                                <img src="https://www.abhibus.com/assets/svg/train.svg" alt="Train Logo" class="icon img-fluid">
+                                <a href="http://127.0.0.1:5500/train.html" class="text-dark d-block">Trains</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <img src="https://www.abhibus.com/assets/svg/flight.svg" alt="Flight Logo" class="icon img-fluid">
+                                <a href="http://127.0.0.1:5500/flight.html" class="text-dark d-block">Flights</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <img src="https://www.abhibus.com/assets/svg/hotel.svg" alt="Hotel Logo" class="icon img-fluid">
+                                <a href="http://127.0.0.1:5500/hotel.html" class="text-dark d-block">Hotels</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <img src="limited-offer-icon-with-time-countdown-last-minute-limited-offer-with-clock-for-sale-promo-logo-or-banner-or-red-background-label-countdown-of-time-for-offer-sale-or-exclusive-deal-design-vector-remov (1).png" alt="Offers Logo" class="icon img-fluid">
+                                <a href="#" class="text-dark d-block">Offers</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <img src="images-removebg-preview.png" alt="Login/Signup Logo" class="icon img-fluid">
+                                <a href="#" class="text-dark d-block">Login/SignUp</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="filters">
+            <div class="filter-section">
+                <h3>Filters</h3>
+                <div class="filter-group">
+                    <label class="filter-label">Departure Time</label>
+                    <label><input type="radio" name="departure-time" value="morning">Morning (6 AM - 12 PM)</label>
+                    <label><input type="radio" name="departure-time" value="afternoon">Afternoon (12 PM - 6 PM)</label>
+                    <label><input type="radio" name="departure-time" value="evening">Evening (6 PM - 12 AM)</label>
+                    <label><input type="radio" name="departure-time" value="night">Night (12 AM - 6 AM)</label>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Bus Type</label>
+                    <label><input type="checkbox" name="bus-type" value="sleeper">Sleeper</label>
+                    <label><input type="checkbox" name="bus-type" value="seater">Seater</label>
+                    <label><input type="checkbox" name="bus-type" value="ac">AC</label>
+                    <label><input type="checkbox" name="bus-type" value="non-ac">Non-AC</label>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Bus Operators</label>
+                    <label><input type="checkbox" name="bus-operator" value="operator1">Operator 1</label>
+                    <label><input type="checkbox" name="bus-operator" value="operator2">Operator 2</label>
+                    <label><input type="checkbox" name="bus-operator" value="operator3">Operator 3</label>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Price Range</label>
+                    <input type="range" name="price-range" min="0" max="5000" step="100" value="2500"
+                        oninput="document.getElementById('price-value').innerText = this.value">
+                    <div>₹ <span id="price-value">2500</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="bus-list">
+            <div class="bus-item">
+                <div class="bus-header">
+                    <div class="bus-title">IntrCity SmartBus</div>
+                    <div class="bus-time-info">
+                        <span>09:00 AM</span>
+                        <span>09:00 PM</span>
+                    </div>
+                    <div class="bus-fare">
+                        <span>₹ 1200</span>
+                    </div>
+                </div>
+                <div class="bus-details">
+                    <div class="bus-type">AC Sleeper</div>
+                    <div class="bus-route">Hyderabad to Bangalore</div>
+                    <div class="bus-deal">Special Deal</div>
+                </div>
+                <div class="bus-amenities">
+                    <div class="amenity"><i class="fas fa-mobile-alt"></i> M-ticket Supported</div>
+                    <div class="amenity"><i class="fas fa-beer"></i> Beer</div>
+                    <div class="amenity"><i class="fas fa-phone-square-alt"></i> Emergency Contact Number</div>
+                    <div class="amenity"><i class="fas fa-broom"></i> Deep Cleaned Buses</div>
+                    <div class="amenity"><i class="fas fa-charging-station"></i> Charging Point</div>
+                    <div class="amenity"><i class="fas fa-bus"></i> Track My Bus</div>
+                </div>
+                <div class="bus-footer">
+                    <div class="bus-reviews">
+                        <div class="rating">4.5</div>
+                        <div class="reviews">(200 reviews)</div>
+                    </div>
+                    <button class="view-seats-btn">View Seats</button>
+                </div>
+            </div>
+            <div class="bus-item">
+                <div class="bus-header">
+                    <div class="bus-title">Sri Tulasi Travels</div>
+                    <div class="bus-time-info">
+                        <span>10:00 AM</span>
+                        <span>10:00 PM</span>
+                    </div>
+                    <div class="bus-fare">
+                        <span>₹ 1500</span>
+                    </div>
+                </div>
+                <div class="bus-details">
+                    <div class="bus-type">Non-AC Sleeper</div>
+                    <div class="bus-route">Hyderabad to Chennai</div>
+                    <div class="bus-deal">Special Deal</div>
+                </div>
+                <div class="bus-amenities">
+                    <div class="amenity"><i class="fas fa-mobile-alt"></i> M-ticket Supported</div>
+                    <div class="amenity"><i class="fas fa-broom"></i> Deep Cleaned Buses</div>
+                    <div class="amenity"><i class="fas fa-charging-station"></i> Charging Point</div>
+                    <div class="amenity"><i class="fas fa-bus"></i> Track My Bus</div>
+                </div>
+                <div class="bus-footer">
+                    <div class="bus-reviews">
+                        <div class="rating">4.0</div>
+                        <div class="reviews">(150 reviews)</div>
+                    </div>
+                    <button class="view-seats-btn">View Seats</button>
+                </div>
+            </div>
+            <div class="bus-item">
+                <div class="bus-header">
+                    <div class="bus-title">Jagan Travels</div>
+                    <div class="bus-time-info">
+                        <span>11:00 AM</span>
+                        <span>11:00 PM</span>
+                    </div>
+                    <div class="bus-fare">
+                        <span>₹ 1000</span>
+                    </div>
+                </div>
+                <div class="bus-details">
+                    <div class="bus-type">AC Sleeper</div>
+                    <div class="bus-route">Hyderabad to Pune</div>
+                    <div class="bus-deal">Special Deal</div>
+                </div>
+                <div class="bus-amenities">
+                    <div class="amenity"><i class="fas fa-mobile-alt"></i> M-ticket Supported</div>
+                    <div class="amenity"><i class="fas fa-beer"></i> Beer</div>
+                    <div class="amenity"><i class="fas fa-phone-square-alt"></i> Emergency Contact Number</div>
+                    <div class="amenity"><i class="fas fa-broom"></i> Deep Cleaned Buses</div>
+                    <div class="amenity"><i class="fas fa-charging-station"></i> Charging Point</div>
+                    <div class="amenity"><i class="fas fa-bus"></i> Track My Bus</div>
+                </div>
+                <div class="bus-footer">
+                    <div class="bus-reviews">
+                        <div class="rating">4.8</div>
+                        <div class="reviews">(250 reviews)</div>
+                    </div>
+                    <button class="view-seats-btn">View Seats</button>
+                </div>
+            </div>
+            <div class="bus-item">
+                <div class="bus-header">
+                    <div class="bus-title">V Kaveri Travels</div>
+                    <div class="bus-time-info">
+                        <span>12:00 PM</span>
+                        <span>12:00 AM</span>
+                    </div>
+                    <div class="bus-fare">
+                        <span>₹ 900</span>
+                    </div>
+                </div>
+                <div class="bus-details">
+                    <div class="bus-type">AC Seater</div>
+                    <div class="bus-route">Hyderabad to Vijayawada</div>
+                    <div class="bus-deal">Special Deal</div>
+                </div>
+                <div class="bus-amenities">
+                    <div class="amenity"><i class="fas fa-mobile-alt"></i> M-ticket Supported</div>
+                    <div class="amenity"><i class="fas fa-broom"></i> Deep Cleaned Buses</div>
+                    <div class="amenity"><i class="fas fa-charging-station"></i> Charging Point</div>
+                    <div class="amenity"><i class="fas fa-bus"></i> Track My Bus</div>
+                </div>
+                <div class="bus-footer">
+                    <div class="bus-reviews">
+                        <div class="rating">4.2</div>
+                        <div class="reviews">(120 reviews)</div>
+                    </div>
+                    <button class="view-seats-btn">View Seats</button>
+                </div>
+            </div>
+            <div class="bus-item">
+                <div class="bus-header">
+                    <div class="bus-title">APSRTC</div>
+                    <div class="bus-time-info">
+                        <span>01:00 PM</span>
+                        <span>01:00 AM</span>
+                    </div>
+                    <div class="bus-fare">
+                        <span>₹ 1300</span>
+                    </div>
+                </div>
+                <div class="bus-details">
+                    <div class="bus-type">Non-AC Seater</div>
+                    <div class="bus-route">Hyderabad to Mumbai</div>
+                    <div class="bus-deal">Special Deal</div>
+                </div>
+                <div class="bus-amenities">
+                    <div class="amenity"><i class="fas fa-mobile-alt"></i> M-ticket Supported</div>
+                    <div class="amenity"><i class="fas fa-beer"></i> Beer</div>
+                    <div class="amenity"><i class="fas fa-phone-square-alt"></i> Emergency Contact Number</div>
+                    <div class="amenity"><i class="fas fa-broom"></i> Deep Cleaned Buses</div>
+                    <div class="amenity"><i class="fas fa-charging-station"></i> Charging Point</div>
+                    <div class="amenity"><i class="fas fa-bus"></i> Track My Bus</div>
+                </div>
+                <div class="bus-footer">
+                    <div class="bus-reviews">
+                        <div class="rating">4.1</div>
+                        <div class="reviews">(110 reviews)</div>
+                    </div>
+                    <button class="view-seats-btn">View Seats</button>
+                </div>
+            </div>
+            <div class="bus-item">
+                <div class="bus-header">
+                    <div class="bus-title">BHAI Travels</div>
+                    <div class="bus-time-info">
+                        <span>02:00 PM</span>
+                        <span>02:00 AM</span>
+                    </div>
+                    <div class="bus-fare">
+                        <span>₹ 1100</span>
+                    </div>
+                </div>
+                <div class="bus-details">
+                    <div class="bus-type">AC Sleeper</div>
+                    <div class="bus-route">Hyderabad to Goa</div>
+                    <div class="bus-deal">Special Deal</div>
+                </div>
+                <div class="bus-amenities">
+                    <div class="amenity"><i class="fas fa-mobile-alt"></i> M-ticket Supported</div>
+                    <div class="amenity"><i class="fas fa-beer"></i> Beer</div>
+                    <div class="amenity"><i class="fas fa-phone-square-alt"></i> Emergency Contact Number</div>
+                    <div class="amenity"><i class="fas fa-broom"></i> Deep Cleaned Buses</div>
+                    <div class="amenity"><i class="fas fa-charging-station"></i> Charging Point</div>
+                    <div class="amenity"><i class="fas fa-bus"></i> Track My Bus</div>
+                </div>
+                <div class="bus-footer">
+                    <div class="bus-reviews">
+                        <div class="rating">4.7</div>
+                        <div class="reviews">(210 reviews)</div>
+                    </div>
+                    <button class="view-seats-btn">View Seats</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.view-seats-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                alert('Viewing seats not implemented in this demo.');
+            });
+        });
+    </script>
+</body>
+</html>

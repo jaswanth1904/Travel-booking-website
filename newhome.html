@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket Booking</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header h1 {
+            font-size: 24px;
+        }
+        header span {
+            font-size: 14px;
+        }
+        header nav a {
+            text-decoration: none;
+            color: #8ddd25;
+            font-size: 16px;
+        }
+        header nav a:hover {
+            color: #d9534f;
+        }
+        .search-section {
+            background: url('https://png.pngtree.com/thumb_back/fh260/background/20190220/ourmid/pngtree-simple-summer-tourism-travel-image_9073.jpg') no-repeat center center/cover;
+            padding: 50px 0;
+            color: rgb(232, 161, 8);
+        }
+        .search-section h2 {
+            margin-bottom: 20px;
+        }
+        .search-box {
+            background: rgba(227, 38, 38, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .search-box input, .search-box button {
+            font-size: 16px;
+        }
+        .search-box i {
+            font-size: 20px;
+        }
+        .offers-section h3 {
+            margin-bottom: 30px;
+        }
+        .offer {
+            border: 1px solid #dc0e0e;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+        }
+        .offer img {
+            border-bottom: 1px solid #1c28a3;
+            margin-bottom: 10px;
+        }
+        .offer p {
+            font-size: 16px;
+            color: #555;
+        }
+        #btn-pad{
+            margin-top: 10px;
+        }
+        #btn-date {
+            margin-top: 10px;
+            width: 200px;
+            height: 40px;
+        }
+        .icon {
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+            border-radius:1070%; 
+        }
+        .nav-item {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+       
+    
+        /* Mobile responsiveness */
+        @media (max-width: 767px) {
+            header h1 {
+                font-size: 20px;
+            }
+            .search-section h2 {
+                font-size: 22px;
+            }
+            .search-box input, .search-box button {
+                font-size: 14px;
+            }
+            .offer img {
+                max-width: 100%;
+            }
+            .offers-section .row {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            .offer {
+                width: 48%;
+                margin-bottom: 15px;
+            }
+        }
+        @keyframes arrowUpDown {
+      0% {
+        transform: rotate(0deg);
+      }
+      50% {
+        transform: rotate(180deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .animated-arrow:hover {
+      animation: arrowUpDown 0.5s forwards;
+    }
+      </style>
+    </style>
+</head>
+<body>
+    <!-- Your existing header and sections -->
+    <header class="bg-light py-3">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-4 d-flex align-items-center">
+                    <h1 class="mb-0"><i class="fas fa-bus text-warning"></i> Travel<span class="text-danger">Hub</span></h1>
+                    <span class="ml-3 text-muted">Where the distination Begins</span>
+                </div>
+                <div class="col-md-8">
+                    <nav class="d-flex justify-content-start">
+                        <ul class="nav">
+                            <li class="nav-item mx-2">
+                                <img src="https://www.abhibus.com/assets/svg/bus.svg" alt="Logo" class="icon">
+                                <a href="#" class="text-dark">Buses</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <img src="https://www.abhibus.com/assets/svg/train.svg" alt="Logo" class="icon">
+                                <a href="#" class="text-dark">Trains</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <img src="https://www.abhibus.com/assets/svg/flight.svg" alt="Logo" class="icon">
+                                <a href="#" class="text-dark">Flights</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <img src="https://www.abhibus.com/assets/svg/hotel.svg" alt="Logo" class="icon">
+                                <a href="#" class="text-dark">Hotels</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAoBJREFUSEvFlkuIjlEYx38jbNxiJ6XZuRTJrVBjSq5TZpLrxn1vZMNs5bZxWRNJzWRmMhqJ5BYh1wUWbCnZ0Cg2CO9fz9HrdM57zpf0ntX3ved5/v/z3J8majpNNfHSKHEb8A245j14FTAO6Mk1pBHiVuCWAT8G9gIjgf3AXPveAtzNIc8lHg68LCyakgB9Dcwwr1SKxojHANuACaY9HViXYwlwHnhlsh+AM8BnXzdGvAM4lUmUEttu5H/JxYi7gAMpxMz7fcDhXIslfDAA/MbcPzqTVGLZxCOAs8AmD3w3cMIyuRtYU7o/bUk1L/AgyW71E8539SKL7dQAwHhgyL4r0Xrt9yNAesOAk8DmgK6STXlz392ViZcDVyDaVNqBQVM8Vjyi0x4yswB9a554CMyKhOFnUeNLXC8oE6v7XK6I3Regr7BqkgHIwtXAJdM5DuxKxH4pcF0yvqvvFe1wYWbiiEhx15E3Lib0HpSxfeLZwNMMYrVMPfA70Fwk2nNATafqzCk89CwUY32bDyhOVecToLiqtFQBskSgqaOMfxIjVtYtSCCsBK42EFcHJ2xl/+/jZ7UDjHEfBfbYZQcwAPwAbgDvrbZHVTxcWX3TJ15rWRvT8+P6AlAHOwSoxeqssJIMYaicxHHBJ9b/qgaibrbTvFSO60abSNKfCLwLsFY2ECevhDkHbAgAyGrNZY1Md1RGIv9qfdkfLtpKtqRapgOLDYlYGDRvPwKTAwLZQ0K6tY3F2hYBf/WZBqxP1Le7/qfVx+dQwql8/vuyFzJuMXDbLtRWtd5qQh2x9VZ1qhX4To5nctdbh7UMGAv0e+BqDMrsVOf7o9YocY4xWTK1Ef8CfPd5H1dddocAAAAASUVORK5CYII=" alt="Logo" class="icon">
+                                <a href="#" class="text-dark">Offers</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAA7xJREFUSEvFl3fIj2sYxz/IHp2yZcXhhMimKBIiK1mHhMg4ji0kOyMroyQzf8geGQkndLJHiMieiZAie7u/uh7dv9vveZ+fv1z1ej33te5rfa/7zcZvomy/yS+/6jg7UB+oAJSySz8EbgGnga+ZBpKp47+A4UBnoGiM8afAZmARcDPpAkmOCwPLgU5Jhjy+ot4CDAaexell5bgccAD405RlcDdw1vsRq4791APawI/yXQVaAA/SOY9zrHSeA0qb0n3gb+BEQuSNgPVAWU9PF3oS6qVznBM4ak0k+TXAMOCVKecDWlmDSf86sA94b/wCwBKgt32fdJlrDHz2nadzPBsYZ0Jy2tdTUPr3uBpWCyK4AHQA7nnn0u1j3zOBiVk5VorUkYpa6a0KvDaFXMA1oHxMum+bfBR5IeCKjd1HoJJ/sTDihcAIM6x6HfecTAMmu5t/AoYAG42nqKQnW5OAGZ5OM+CgfS8ARkc837H+/wgo7rrzjFfjSPYiUN3dfJ3LSs8g6k1AV+v2ugHvPFDTMqhSfSffsRrgiJ0LBEYGBt4BuYFZwISAp7PxLqKXgFLskxrtXztoYAiX4lidu9gEugBbAwOXrYZrgV4BT1no4ZDtkmXFZ3e3EdPZP8CyMGJ13XTTKJIGdYRgA2ys1On/maxGSx2cF1jqRRc5V8NG3a5pmRs6VmrVACItANXbp4KAoi4TnEefd4Ealm5fpKS7sBaJaJQ1YkqqlV6BvKitzWvoQ0ZWGjT6vG0uQ0PTXDayJagVaclINsVxQw8SNTZR2tMFWNmhW3Nj7HUodScmCzqe4v6ZanytVE1MiuM8rviPrSt3AB0DY9rFaiDNt0BENRW9dQilNB8GNFZfAr1dbszaOXx4bqP6IXSs79UGkRodgbu6VCTUUWQVs4hMrBtAa3sY6Fvze8qNoFBvhSvFwEg/RK4mwP/G1FqrDWgnaxUWs3PdWGASQWl+ayoZF2kT1XI48MLht8BDlxYJJ47FOdb5TrcS25uAbqmGUqpEgjyNjDLik8okHJhjh2oglSBCuO3hYyLddvrDIgrHRnM8KCHVq4B+gYxmWFArVPtBcQ+BKsAhhzIlPFl1cQT4cf5bAvs9prBA5VPtUyirp48aSfWOXiFa5CqDUEqG9KTJYWAj2f5WEnW/SJE2tY7/6aJJjz29NgRzY7zxScj299rOs3q/iRNOchzpKer5brF3S/C6ARgb98DLpMZx9oXXesxrr+q3SC8PAYh+R++ypKz88l8SiQYzFcg01Znay1juGzC8sh8i2SWvAAAAAElFTkSuQmCC" alt="Logo" class="icon">
+                                <a href="#" class="text-dark">Login/SignUp</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="search-section">
+        <div class="container text-center">
+            <h2>Book Bus Tickets</h2>
+            <div class="search-box d-flex justify-content-center flex-wrap">
+                <input list="from-stations" class="form-control mx-2" placeholder="From Station">
+                <datalist id="from-stations">
+                    <option value="Alluri Sitharama Raju">
+                    <option value="Anakapalli">
+                    <option value="Parvathipuram Manyam">
+                        <option value="Srikakulam">
+                            <option value="Visakhapatnam">
+                            <option value="Vizianagaram">
+                            <option value="Bapatla">
+                            <option value="Dr. B. R. Ambedkar Konaseema">
+                            <option value="East Godavari">
+                            <option value="Eluru">
+                            <option value="Guntur">
+                            <option value="Kakinada">
+                            <option value="Krishna">
+                            <option value="NTR">
+                            <option value="Palnadu">
+                            <option value="Prakasam">
+                            <option value="Sri Potti Sriramulu Nellore">
+                            <option value="West Godavari">
+                            <option value="Anantapur">
+                            <option value="Annamayya">
+                            <option value="Chittoor">
+                            <option value="YSR (Kadapa)">
+                            <option value="Kurnool">
+                            <option value="Nandyal">
+                            <option value="Sri Sathya Sai">
+                            <option value="Tirupati">
+                            <option value="Hyderabad"
+                            <option value="Warangal">
+                            <option value="Nizamabad">
+                            <option value="Khammam">
+                            <option value="Karimnagar">Karimnagar</option>
+                            <option value="Ramagundam">Ramagundam</option>
+                            <option value="Mahabubnagar">Mahabubnagar</option>
+                            <option value="Nalgonda">Nalgonda</option>
+                            <option value="Adilabad">Adilabad</option>
+                            <option value="Suryapet">Suryapet</option>
+                            <option value="Miryalaguda">Miryalaguda</option>
+                            <option value="Siddipet">Siddipet</option>
+                            <option value="Jagtial">Jagtial</option>
+                            <option value="Mancherial">Mancherial</option>
+                    <!-- More stations -->
+                </datalist>
+                <button id="swapButton" class="btn btn-primary">
+                    <i class="fas fa-exchange-alt"></i>
+                </button>
+                <input list="to-stations" class="form-control mx-2" placeholder="To Station">
+                <datalist id="to-stations">
+                    <option value="Alluri Sitharama Raju">
+                    <option value="Anakapalli">
+                    <option value="Parvathipuram Manyam">
+                        <option value="Srikakulam">
+                            <option value="Visakhapatnam">
+                            <option value="Vizianagaram">
+                            <option value="Bapatla">
+                            <option value="Dr. B. R. Ambedkar Konaseema">
+                            <option value="East Godavari">
+                            <option value="Eluru">
+                            <option value="Guntur">
+                            <option value="Kakinada">
+                            <option value="Krishna">
+                            <option value="NTR">
+                            <option value="Palnadu">
+                            <option value="Prakasam">
+                            <option value="Sri Potti Sriramulu Nellore">
+                            <option value="West Godavari">
+                            <option value="Anantapur">
+                            <option value="Annamayya">
+                            <option value="Chittoor">
+                            <option value="YSR (Kadapa)">
+                            <option value="Kurnool">
+                            <option value="Nandyal">
+                            <option value="Sri Sathya Sai">
+                            <option value="Tirupati">
+                            <option value="Hyderabad"
+                            <option value="Warangal">
+                            <option value="Nizamabad">
+                            <option value="Khammam">
+                            <option value="Karimnagar">Karimnagar</option>
+                            <option value="Ramagundam">Ramagundam</option>
+                            <option value="Mahabubnagar">Mahabubnagar</option>
+                            <option value="Nalgonda">Nalgonda</option>
+                            <option value="Adilabad">Adilabad</option>
+                            <option value="Suryapet">Suryapet</option>
+                            <option value="Miryalaguda">Miryalaguda</option>
+                            <option value="Siddipet">Siddipet</option>
+                            <option value="Jagtial">Jagtial</option>
+                            <option value="Mancherial">Mancherial</option>      
+                    <!-- More stations -->
+                </datalist>
+                <input type="date" class="form-control mx-2" id="btn-date" value="2024-11-16">
+                <button class="btn btn-light mx-2" id="btn-pad">Today</button>
+                <button class="btn btn-light mx-2" id="btn-pad">Tomorrow</button>
+                <button class="btn btn-danger mx-2" id="btn-pad">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="offers-section py-5">
+        <div class="container text-center">
+            <h3>Exciting Offers for You</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="offer">
+                        <img src="https://via.placeholder.com/200" alt="Offer 1">
+                        <p>Flat 20% off on bus tickets</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="offer">
+                        <img src="https://via.placeholder.com/200" alt="Offer 2">
+                        <p>Exclusive offers on flights</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="offer">
+                        <img src="https://via.placeholder.com/200" alt="Offer 3">
+                        <p>Up to 30% off on hotels</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script -->
+    <script>
+        // Swap stations when clicking on the exchange button
+        document.getElementById('swapButton').addEventListener('click', function() {
+            var fromStation = document.querySelector('[placeholder="From Station"]').value;
+            var toStation = document.querySelector('[placeholder="To Station"]').value;
+            
+            // Swap the values
+            document.querySelector('[placeholder="From Station"]').value = toStation;
+            document.querySelector('[placeholder="To Station"]').value = fromStation;
+        });
+
+        // Change date to today
+        document.getElementById('btn-pad').addEventListener('click', function() {
+            var today = new Date().toISOString().split('T')[0];  // Get today's date
+            document.getElementById('btn-date').value = today; // Set the value of the date input
+        });
+
+        // Change date to tomorrow
+        document.getElementById('btn-pad').addEventListener('click', function() {
+            var tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            var tomorrowDate = tomorrow.toISOString().split('T')[0]; // Get tomorrow's date
+            document.getElementById('btn-date').value = tomorrowDate; // Set the value of the date input
+        });
+    </script>
+</body>
+</html>

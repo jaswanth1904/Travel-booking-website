@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Hub</title>
+    <style>
+        /* Global Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header Section Styles */
+        .header {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ef240a;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        .header .logo:hover {
+            color: #007bff;
+        }
+
+        .header .icons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .header .icons .icon {
+            margin: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .header .icons .icon img {
+            height: 24px;
+            width: 24px;
+            margin-right: 10px;
+        }
+
+        .header .icons .icon:hover {
+            color: #ff0000;
+        }
+
+        .header .icons .icon span {
+            font-size: 16px;
+            color: #343a40;
+        }
+
+        /* Main Section Styles */
+        .main {
+            background-image: url('https://i.pinimg.com/736x/a1/6c/60/a16c603829b603f316c0b666c5ee1a75.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 100px 0;
+            text-align: center;
+            height: 100vh;
+            margin-top: 40px;
+            backdrop-filter: blur(8px);
+        }
+
+        .main .search-bar {
+            background-color: #ff0000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .main .search-bar select, .main .search-bar input[type="text"], .main .search-bar input[type="date"] {
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .main .search-bar button[type="submit"] {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .main .search-bar button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .main .travelers {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .main .travelers .traveler-type {
+            margin-bottom: 20px;
+        }
+
+        .main .travelers .traveler-type input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .main .travelers .traveler-type label {
+            font-size: 16px;
+            color: #343a40;
+        }
+
+        /* Hotel Cards Styles */
+        .hotel-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .hotel-card {
+            background-color:  #ffffff  ;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+            width: 300px;
+            transition: transform 0.3s ease;
+        }
+
+        .hotel-card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .hotel-card h3 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+
+        .hotel-card p {
+            font-size: 14px;
+            color: #000000;
+        }
+
+        .hotel-card .facilities {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        .hotel-card .facilities li {
+            font-size: 14px;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+
+        .hotel-card:hover {
+            transform: scale(1.05);
+        }
+          
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header .icons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header .icons .icon {
+                margin: 10px 0;
+            }
+
+            .main .search-bar select, .main .search-bar input[type="text"], .main .search-bar input[type="date"] {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .main .search-bar button[type="submit"] {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo" onclick="refreshPage()">Travel Hub</div>
+        <div class="icons">
+            <div class="icon">
+                <img src="https://www.abhibus.com/assets/svg/train.svg" alt="Train Logo">
+                <span>Trains</span>
+            </div>
+            <div class="icon">
+                <img src="https://www.abhibus.com/assets/svg/flight.svg" alt="Flight Logo">
+                <span>Flights</span>
+            </div>
+            <div class="icon">
+                <img src="https://www.abhibus.com/assets/svg/hotel.svg" alt="Hotel Logo">
+                <span>Hotels</span>
+            </div>
+            <div class="icon">
+                <img src="https://i.pinimg.com/736x/76/b5/62/76b562ab9ede4f7a2ddeb1c502850b8b.jpg" alt="Bus Logo">
+                <span>Buses</span>
+            </div>
+            <div class="icon">
+                <img src="https://i.pinimg.com/736x/46/22/59/46225951d3e23497bf932f77f072383a.jpg" alt="Login Logo">
+                <span>Login</span>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="search-bar">
+            <select id="location" required>
+                       <!-- Andhra Pradesh (AP) -->
+<option value="tirupati">Tirupati</option>
+<option value="visakhapatnam">Visakhapatnam</option>
+<option value="vijayawada">Vijayawada</option>
+<option value="amaravati">Amaravati</option>
+<option value="srikalahasti">Srikalahasti</option>
+<option value="rajahmundry">Rajahmundry</option>
+<option value="lepakshi">Lepakshi</option>
+<option value="anantapur">Anantapur</option>
+<option value="nellore">Nellore</option>
+<option value="kadapa">Kadapa</option>
+
+<!-- Telangana (TS) -->
+<option value="hyderabad">Hyderabad</option>
+<option value="warangal">Warangal</option>
+<option value="nizamabad">Nizamabad</option>
+<option value="karimnagar">Karimnagar</option>
+<option value="khammam">Khammam</option>
+<option value="nalgonda">Nalgonda</option>
+<option value="mahabubnagar">Mahabubnagar</option>
+<option value="adilabad">Adilabad</option>
+<option value="medak">Medak</option>
+<option value="rangareddy">Rangareddy</option>
+
+<!-- Famous Places in AP and TS -->
+<option value="charminar">Charminar</option>
+<option value="tirumala">Tirumala</option>
+<option value="araku">Araku Valley</option>
+<option value="golconda">Golconda Fort</option>
+<option value="ramoji">Ramoji Film City</option>
+<option value="kanaka_durga">Kanaka Durga Temple</option>
+<option value="ramappa">Ramappa Temple</option>
+<option value="kailasagiri">Kailasagiri</option>
+<option value="nagarjuna_sagar">Nagarjuna Sagar Dam</option>
+<option value="lepakshi">Lepakshi Temple</option>
+
+            </select>
+            <input type="date" id="checkin" required>
+            <input type="date" id="checkout" required>
+            <input type="text" id="guests" placeholder="Number of people" required>
+            <button type="submit" onclick="searchHotels()">Search Hotels</button>
+        </div>
+        <div class="hotel-cards" id="hotelCards"></div>
+    </main>
+
+    <script>
+    function refreshPage() {
+        location.reload();
+    }
+    
+    function searchHotels() {
+        const hotelCardsContainer = document.getElementById('hotelCards');
+        hotelCardsContainer.innerHTML = '';
+    
+        const hotels = [
+            {
+                name: 'Hotel Sunshine',
+                location: 'Location 1',
+                image: 'https://i.pinimg.com/736x/3a/74/dc/3a74dc16e393dbf95c174251fcc4f28d.jpg',
+                facilities: ['Free Wi-Fi', 'Breakfast Included', 'Swimming Pool', 'Spa'],
+                price: '$100/night',
+                rating: '4.5/5'
+            },
+            {
+                name: 'Ocean View Hotel',
+                location: 'Location 2',
+                image: 'https://via.placeholder.com/300x200',
+                facilities: ['Free Wi-Fi', 'Beach Access', 'Gym', 'Restaurant'],
+                price: '$200/night',
+                rating: '4.8/5'
+            },
+            {
+                name: 'Mountain Retreat',
+                location: 'Location 3',
+                image: 'https://via.placeholder.com/300x200',
+                facilities: ['Free Wi-Fi', 'Mountain View', 'Hiking Trails', 'Sauna'],
+                price: '$150/night',
+                rating: '4.2/5'
+            }
+        ];
+    
+        hotels.forEach(hotel => {
+            const card = document.createElement('div');
+            card.className = 'hotel-card';
+            card.innerHTML = `
+                <img src="${hotel.image}" alt="${hotel.name}">
+                <h3>${hotel.name}</h3>
+                <p>Location: ${hotel.location}</p>
+                <p>Price: ${hotel.price}</p>
+                <p>Rating: ${hotel.rating} <i class="fas fa-star"></i></p>
+                <ul class="facilities">
+                    ${hotel.facilities.map(facility => `<li><i class="fas fa-check-circle"></i> ${facility}</li>`).join('')}
+                </ul>
+                <button class="book-now" data-hotel-name="${hotel.name}">Book Now <i class="fas fa-arrow-right"></i></button>
+            `;
+            hotelCardsContainer.appendChild(card);
+        });
+    
+        // Add event listener to book now buttons
+        const bookNowButtons = document.querySelectorAll('.book-now');
+        bookNowButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const hotelName = button.getAttribute('data-hotel-name');
+                // Redirect to payment page
+                window.location.href = 'payment.html?hotel=' + hotelName;
+            });
+        });
+    }
+    </script>
+</body>
+</html>
