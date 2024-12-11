@@ -1,8 +1,8 @@
 # Travel-booking-website
 
 ## Team Members
-- [@jaswanth1904](https://github.com/jaswanth1904) -Frontend Developer
-- [@sandeepkonjeti](https://github.com/Sandeepkonjeti) -Backend Developer
+- [@jaswanth1904](https://github.com/jaswanth1904) - Frontend Developer
+- [@sandeepkonjeti](https://github.com/Sandeepkonjeti) - Backend Developer
 
 
 Abstract
